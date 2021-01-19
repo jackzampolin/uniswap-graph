@@ -46,17 +46,19 @@ func (c Config) GetPairs(ctx context.Context, first, skip int) ([]UniswapPairs, 
 	req := graphql.NewRequest(fmt.Sprintf(`{
 		pairs(first: %d, skip: %d, orderBy: volumeUSD, orderDirection: desc) {
 			id
-			volumeUSD
 			reserveUSD
+			totalSupply
+			reserve0
+			reserve1
+			token0Price
+			token1Price
 			token0 {
 				id
-				name
-				symbol
+				decimals
 			}
 			token1 {
 				id
-				name
-				symbol
+				decimals
 			}
 		}
 	}`, first, skip))
